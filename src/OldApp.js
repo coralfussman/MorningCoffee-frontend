@@ -23,123 +23,53 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     state = {
       //results for nyt
       results: [],
-      user: {
-        id: 0,
-        username: "",
-        dashboard: {
-          widgetDash: [],
-          userWidgets: []
-
-        },
-        userThemes: []
-      },
+      users: [],
+      currentUser: [],
+      dashboard: "",
       widgets: [],
-      themes: [],
-      token: ""
+      theme: []
 
   
-    }
+    };
   
 
 //---------------FETCH REQUESTS----------------//
     
     //fetching nyt info
-    // componentDidMount() {
-    //   fetch("http://localhost:4000/users")
-    //   .then(res => res.json())
-    //   .then(users =>{
-    //     this.setState({
-    //       users: users
-    //     })
-    //   })
-
-    //   fetch(API)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       this.setState({
-    //         results: data.results
-    //       });
-    //     });
-
-
-        
-    // }
-    ///////////////////////////////////
-    componentDidMount(){
-      if(localStorage.token){
-
-        fetch("http://localhost:4000/users/stay_logged_in",{
-          headers: {
-            "Authorization": localStorage.token
-          }
+    componentDidMount() {
+      fetch("http://localhost:4000/users")
+      .then(res => res.json())
+      .then(users =>{
+        this.setState({
+          users: users
         })
-        .then(r => r.json())
-        .then(this.handleResponse)
-  
-      }
-        fetch("http://localhost:4000/themes")
-        .then(r => r.json())
-        .then((themes) => {
-            this.setState({
-                themes: themes
-            })
-        })
-        fetch(API)
+      })
+
+      fetch(API)
         .then(res => res.json())
         .then(data => {
           this.setState({
             results: data.results
           });
         });
+
+
         
-      }
-      
-      
-  
-      handleLoginSubmit = (userInfo) => {
-        fetch("http://localhost:4000/login", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json"
-          },
-          body: JSON.stringify(userInfo)
-        })
-          .then(r => r.json())
-          .then(this.handleResponse)
-      }
-  
-  
-  
-      handleRegisterSubmit = (userInfo) => {
-        fetch("http://localhost:4000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json"
-          },
-          body: JSON.stringify(userInfo)
-        })
-          .then(r => r.json())
-          .then(this.handleResponse)
-          
-      }
+    }
 
 
-  
-      handleResponse = (resp) => {
-  
-        if(resp.user){
-          localStorage.token = resp.token
-          this.setState(resp, () => {
-            this.props.history.push("/dashboard")
-          })
-        } else {
-          alert(resp.error)
-        }
-  
-      }
-
-    ///////////////////////////////////
-
+    handleRegisterSubmit = (userInfo) => {
+      fetch("http://localhost:4000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(userInfo)
+      })
+        .then(r => r.json())
+        .then(this.pushUserDash)
+        
+    }
 
     // pushUserDash = (resp) => {
     //   if(resp.user){
@@ -152,8 +82,22 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     // }
 
     //----------------SETTING STATE FUNCTIONS-----------------//
-   
+    // fetch(`http://localhost:4000/users/10`)
+    // .then(r => r.json())
+    // .then((user) => {
+    //     this.setState({
+    //         currentUser: user
+    //     })
+    // })
+
     // User functions
+
+    currentUser = (user) => {
+      console.log(user, "user")
+      this.setState({
+        currentUser: user
+      })
+    }
 
     clearUser = (e) => {
       // window.location.reload(false)
@@ -179,8 +123,19 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
 
 
-    
+    // -----might not need if user sign in is fake, set user to state, but then how to resign in?
 
+    handleLoginSubmit = (userInfo) => {
+      fetch("http://localhost:4000/users/10", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(userInfo)
+      })
+        .then(r => r.json())
+        .then(this.pushUserDash)
+    }
 
 
     //----------------RENDERING COMPONENTS-----------------//
@@ -189,9 +144,9 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       if(routerProps.location.pathname === "/login"){
         return <Form
           formName="Login"
-          user={this.state.user}
+          users={this.state.users}
           handleSubmit={this.handleLoginSubmit}
-         
+          currentUser={this.currentUser}
         />
       } else if (routerProps.location.pathname === "/register") {
         return <Form
@@ -203,16 +158,9 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     }
 
     renderDashboard = (routerProps) => {
-      if(this.state.token){
+      if(this.state.user){
         return <Dashboard
         user={this.state.user}
-        token={this.state.token}
-        dashboard={this.state.dashboard}
-        userWidgets={this.state.userWidgets}
-        widgets={this.state.widgets}
-        themes={this.state.themes}
-        userThemes={this.state.userThemes}
-        results={this.state.results}
           deleteDash={this.deleteDash}
            updateDash={this.updateDash} />
          
@@ -229,13 +177,11 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     render() {
       return (
         <div className="App">
-      <img src={logo} className="widgetIcons" alt="logo" />
       <style>
       @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;350;400;500&display=swap');
       </style>
+      <img src={logo} className="widgetIcons" alt="logo" />
       <NavBar/>  
-      <header className="App-header">
-      </header>
       <Switch>
 
       <Route path="/" exact component={Home}/>

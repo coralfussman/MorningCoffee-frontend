@@ -13,6 +13,16 @@ class Form extends Component {
     this.props.handleSubmit(this.state)
   }
 
+//     handleSubmit = (e) => {
+//       e.preventDefault()
+    
+//     console.log("made it to handle sub")
+//     const user = this.props.users.find(user => user.username === this.state.username)
+//     console.log(user, "user & handle sub")
+//     return this.props.currentUser(user)
+    
+// }
+
   handleChange = (e) => {
     let {name, value} = e.target
     this.setState({
@@ -27,6 +37,7 @@ class Form extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>{formName}</h1>
+
         <label htmlFor="name">Name:</label>
         <input type="text" autoComplete="off" name="name" value={name} onChange={this.handleChange}/>
         <label htmlFor="username">Username:</label>
