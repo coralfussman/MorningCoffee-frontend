@@ -6,11 +6,18 @@ export const themes = {
       textColor: "#51463A",
       secondaryColor: "#7F5315"
     },
-    crazy: {
+    blue: {
       primaryColor: "#1B8C81",
       accentColor: "#458622",
       backgroundColor: "#8FC266",
       textColor: "#D94B2B",
+      secondaryColor: "#B9667F"
+    },
+    coral: {
+      primaryColor: "#1B8C81",
+      accentColor: "#458622",
+      backgroundColor: "#EA5358",
+      textColor: "#000000",
       secondaryColor: "#B9667F"
     }
   };

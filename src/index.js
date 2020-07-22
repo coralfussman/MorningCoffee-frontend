@@ -12,13 +12,13 @@ ReactDOM.render(
       <App />
   </BrowserRouter>,
    document.getElementById('root'));
-   ReactDOM.render(
+//    ReactDOM.render(
  
-    <BrowserRouter>
+//     <BrowserRouter>
        
-        <NavBar />
-    </BrowserRouter>,
-     document.getElementById('nav'));
+//         <NavBar />
+//     </BrowserRouter>,
+//      document.getElementById('nav'));
   
   
 

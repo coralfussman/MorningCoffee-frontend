@@ -4,7 +4,7 @@ import React from 'react';
 class ArticleCard extends React.Component {
   render() {
     let {title, thumbnail_standard, url} = this.props.article
-    console.log(this.props.article)
+    // console.log(this.props.article)
     return(
 
       <div className="news">

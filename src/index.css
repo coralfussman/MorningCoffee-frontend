@@ -3,7 +3,8 @@ body {
   font-family: 'Jost', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
+  /* min-height: 100vh;
+  min-height: 100vw; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +15,7 @@ body {
 #nav {
   margin: auto;
   height: 5%;
+  align-items: center;
 }
 
 .navLink {
@@ -28,6 +30,15 @@ body {
   
 }
 
+.homePg {
+  
+  display: flex;
+  flex: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
 
 .dashContainer{
   min-width: 100vw;
@@ -37,36 +48,48 @@ body {
   justify-content: space-between;
 }
 h3{
-  font-weight: 350;
+  font-weight: 500;
 }
+
 
 
 /* -------------------------column 1 widgets---------------------------- */
 
 .themePanel{
-
-  height: 70px;
+  
+  height: 50px;
   display: flex;
+  align-items: center;
 }
 
-.themeDots1{
-  height: 50px;
-  width: 50px;
+.coffee{
+  height: 35px;
+  width: 35px;
   background: rgb(218, 218, 218);
-border-radius: 50%;
+  border-radius: 50%;
+  margin: 2px;
 }
-.themeDots2{
-  height: 50px;
-  width: 50px;
+.blue{
+  height: 35px;
+  width: 35px;
   background: rgb(37, 128, 151);
   border-radius: 50%;
+  margin: 2px;
 }
-.themeDots3{
-  height: 50px;
-  width: 50px;
+.coral{
+  height: 35px;
+  width: 35px;
   background: rgb(228, 96, 136);
   border-radius: 50%;
+  margin: 2px;
 }
+
+.titleWidgPanel{
+  font-weight: 500;
+  margin: 0;
+  padding-bottom: 0;
+}
+
 
 .widgetIcons {
   height: 10vh;  
@@ -84,12 +107,13 @@ border-radius: 50%;
   display: flex;
   flex-direction: column;
   background: rgb(229, 229, 229);
-  height: 60vh;
+  height: 70vh;
   width: 90%;
   justify-content: center;
   border-radius: 0px 50px 50px 0px;
   align-items: center;
   box-shadow: 5px 5px 15px 5px rgb(207, 207, 207);
+  overflow: auto;
 
 
 }
@@ -109,11 +133,12 @@ border-radius: 50%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 250px;
-  width: 100%;
-  background: purple;
+  height: 30vh;
+  width: 70vw;
+  background: rgb(240, 239, 239);
   padding: 10px;
   margin: 10px;
+  margin-bottom: 50px;
   
 }
 .widgeDash{
@@ -126,7 +151,7 @@ border-radius: 50%;
 .widget {
   height: 250px;
   width: 320px;
-  background: white;
+  
 }
 
 
@@ -162,7 +187,7 @@ border-radius: 50%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: rgb(229, 229, 229);
+  background: rgb(240, 239, 239);
   height: 300px;
   width: 300px;
   box-shadow: 5px 5px 15px 5px rgb(192, 192, 192);
@@ -174,6 +199,23 @@ border-radius: 50%;
   height: 150px;
   width: 150px;
   margin: 20px;
+}
+
+.DeleteBttn {
+  height: 25px;
+  width: 25px;
+  background: rgb(243, 101, 101);
+  border-radius: 50%;
+  border-width: 0ch;
+  margin: -5px;
+  padding: 0px;
+  border-color: rgb(180, 180, 180);
+  font-family: Jost;
+  font-size: 20px;
+  color: rgb(92, 92, 92);
+  margin-bottom: 20px;
+  z-index: 1;
+  font-size: 12px;
 }
 
 
@@ -192,8 +234,19 @@ border-radius: 50%;
  
   
 } */
+button {
+  background: white;
+  border-radius: 8px 8px 8px 8px;
+  border-width: 0ch;
+  border-color: rgb(180, 180, 180);
+  font-family: Jost;
+  font-size: 20px;
+  color: rgb(92, 92, 92);
+  margin-bottom: 20px;
+}
 .widgetIcons {
-  height: 8vh;  
+  width: 6vh;  
+  height: 6vh;  
   padding: 10px;
 }
 .widgetMIcons {
@@ -202,7 +255,7 @@ border-radius: 50%;
 }
 
 .iconMediaPanel{
-  margin: 2%;
+  margin-left: 50px;
   display: flex;
   flex-direction: column;
   background: rgb(229, 229, 229);

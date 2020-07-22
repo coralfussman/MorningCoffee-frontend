@@ -1,11 +1,18 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
+// import ThemeProvider from 'react-theme-provider';
+// import { createGlobalStyle} from "styled-components"
 import Home from './components/Home'
 import Form from './components/Form'
 import NavBar from './components/NavBar'
 import About from './components/About'
 import Dashboard from './DashboardComponents/Dashboard'
-import logo from './logo.svg';
+
+
+
+// import { themes } from "./DashboardComponents/Themes";
+
+
 
 
 import {withRouter} from 'react-router-dom'
@@ -21,20 +28,28 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
   class App extends React.Component {
     state = {
-      //results for nyt
+      //results is for nyt
       results: [],
       user: {
         id: 0,
         username: "",
-        dashboard: {
-          widgetDash: [],
-          userWidgets: []
+        dashboards: [
+          {
+          widget_dashes: [],
+          widgets: []
+        }
 
-        },
-        userThemes: []
+      ],
+        themes: [
+          {
+            id: 0,
+            name: ""
+          }
+         
+        ]
       },
       widgets: [],
-      themes: [],
+      themeNames: [],
       token: ""
 
   
@@ -42,29 +57,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
   
 
 //---------------FETCH REQUESTS----------------//
-    
-    //fetching nyt info
-    // componentDidMount() {
-    //   fetch("http://localhost:4000/users")
-    //   .then(res => res.json())
-    //   .then(users =>{
-    //     this.setState({
-    //       users: users
-    //     })
-    //   })
-
-    //   fetch(API)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       this.setState({
-    //         results: data.results
-    //       });
-    //     });
-
-
-        
-    // }
-    ///////////////////////////////////
+  
     componentDidMount(){
       if(localStorage.token){
 
@@ -79,11 +72,20 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       }
         fetch("http://localhost:4000/themes")
         .then(r => r.json())
-        .then((themes) => {
+        .then((themeNames) => {
             this.setState({
-                themes: themes
+              themeNames: themeNames
             })
         })
+
+        fetch("http://localhost:4000/widgets")
+        .then(r => r.json())
+        .then((widgets) => {
+            this.setState({
+                widgets: widgets
+            })
+        })
+
         fetch(API)
         .then(res => res.json())
         .then(data => {
@@ -119,6 +121,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
           body: JSON.stringify(userInfo)
         })
           .then(r => r.json())
+          .then(console.log)
           .then(this.handleResponse)
           
       }
@@ -138,18 +141,6 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
   
       }
 
-    ///////////////////////////////////
-
-
-    // pushUserDash = (resp) => {
-    //   if(resp.user){
-    //     this.setState(resp, () => {
-    //       this.props.history.push("/dashboard")
-    //     })
-    //   } else {
-    //     alert(resp.error)
-    //   }
-    // }
 
     //----------------SETTING STATE FUNCTIONS-----------------//
    
@@ -158,21 +149,38 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     clearUser = (e) => {
       // window.location.reload(false)
       this.setState({
-        currentUser: undefined
+        user: undefined
       })
+      this.props.history.push("/home")
     }
 
 
     //widget functions
-    // removeWidget = (deletedWidge) => {
+
+    addOneWidget = (newlyCreatedWidgetDash) => {
+      console.log(newlyCreatedWidgetDash)
+      // let copyOfWidgetDash = [...this.state.user.dashboards[0].widget_dashes, newlyCreatedWidgetDash]
+      // let copyOfUser = {
+      //   ...this.state.user.dashboards[0], 
+      //     widget_dashes: copyOfWidgetDash
+      // }
+      // this.setState({
+      //   widget_dashes: copyOfUser
+      // })
+    }
+
+
+    deleteWidget = (deletedWidgetDash) => {
      
-    //   let copyOfWidge = this.state. filter((widgePojo) => {
-    //     return widgePojo.id !== deletedWidge
-    //   })
-    //   this.setState({
-    //    widge: { widge: copyOfWidge}
-    //   })
-    // }
+      let copyOfWidget = this.state.user.dashboards[0].widgets.widget_dash_id.filter((widgetPojo) => {
+        return widgetPojo.widget_dash_id !== deletedWidgetDash
+      })
+      console.log(copyOfWidget)
+      this.setState({
+       user: { dashboards:[{
+                 widgets: copyOfWidget}]}
+      })
+    }
 
      //dash functions
 
@@ -207,14 +215,17 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
         return <Dashboard
         user={this.state.user}
         token={this.state.token}
-        dashboard={this.state.dashboard}
-        userWidgets={this.state.userWidgets}
+        clearUser={this.clearUser}
+        dashboardID={this.state.user.dashboards[0].id}
+        userWidgets={this.state.user.dashboards[0].widgets}
+        widgetDash={this.state.user.dashboards[0].widget_dashes}
         widgets={this.state.widgets}
-        themes={this.state.themes}
-        userThemes={this.state.userThemes}
+        themeNames={this.state.themeNames}
+        userThemes={this.state.user.themes}
         results={this.state.results}
-          deleteDash={this.deleteDash}
-           updateDash={this.updateDash} />
+        addOneWidget={this.addOneWidget}
+        deleteWidget={this.deleteWidget}
+          updateDash={this.updateDash} />
          
       } else {
         this.props.history.push("/login")
@@ -227,15 +238,19 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
     
     render() {
+      console.log(this.state.user)
+     //console.log(this.state.user.dashboards[0].id)
+    //console.log(this.state.user.dashboards[0].widgets)
       return (
+        // <ThemeProvider themes={this.state.themes}>
         <div className="App">
-      <img src={logo} className="widgetIcons" alt="logo" />
+      {/* <img src={logo} className="widgetIcons" alt="logo" /> */}
       <style>
       @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;350;400;500&display=swap');
       </style>
       <NavBar/>  
-      <header className="App-header">
-      </header>
+      {/* <header className="App-header">
+      </header> */}
       <Switch>
 
       <Route path="/" exact component={Home}/>
@@ -246,6 +261,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     
       </Switch>
     </div>
+    // </ThemeProvider>
     );
   }
 }

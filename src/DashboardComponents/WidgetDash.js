@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-
 import Widget from './Widget';
-
 import EmptyWidget from './EmptyWidget';
 
+// import { DropTarget } from 'react-dnd'
 
 export default class WidgetDash extends Component {
     state= {
@@ -14,93 +13,58 @@ export default class WidgetDash extends Component {
     }
 
 
-    handleDrop = () => { }
+    // handleDrop = () => { }
+// componentDidUpdate(
+//     fetch("http://localhost:4000/widget_dashes", {
+//         method: "POST",
+//         headers: {
+//           "content-type": "application/json",
+//           "Authorization": localStorage.token
+//         },
+//         body: JSON.stringify({
+
+//           widget_id: this.props.widget.id,
+         
+
+//         })
+//       })
+//       .then(r => r.json())
+//       .then((newlyCreatedWidgetDash) => {
+//           console.log(newlyCreatedWidgetDash)
+     
+//          this.props.addOneWidget(newlyCreatedWidgetDash);
+//       })
+     
+// )
+
+    handleCreate = (evt) => {
+        
+        //evt.preventDefault()
+        //console.log(this.props)
+        
+       
+    }
 
 
     render() {
-        console.log(this.props.widgets)
-
-        const widge1 = this.props.widgets.map(widgeType => (
+        // console.log(this.props.userWidgets)
+        // console.log(this.props.widgetDash)
+        
+        const widgets = this.props.userWidgets.map(widgeType => (
             widgeType === null 
                 ? <EmptyWidget/>
-                : <Widget key={widgeType.id} type={widgeType} deleteWidget={this.props.deleteWidget}/>
-            
+                : <Widget key={widgeType.id} widget={widgeType} type={widgeType.title} widgetDash={this.props.widgetDash} onDrag={this.handleUpdate} deleteWidget={this.props.deleteWidget}/>
+        
         ))
-        const widge2 = this.props.widgets.map(widgeType => (
-            widgeType === null 
-                ? <EmptyWidget/>
-                :  <Widget key={widgeType.id} type={widgeType} deleteWidget={this.props.deleteWidget}/>
-            
-        ))
-        const widge3 = this.props.widgets.map(widgeType => (
-            widgeType === null 
-                ? <EmptyWidget/>
-                : <Widget key={widgeType.id} type={widgeType} deleteWidget={this.props.deleteWidget}/>
-            
-        ))
-        const widge4 = this.props.widgets.map(widgeType => (
-            widgeType === null 
-                ? <EmptyWidget/>
-                : <Widget key={widgeType.id} type={widgeType} deleteWidget={this.props.deleteWidget}/>
-            
-        ))
+       
         return (
-            <div>
-             
-             {widge1}
-             {widge2}
-             {widge3}
-             {widge4}
-               
+            <div className="rowContainer">
+
+             {widgets}
+            
             </div>
         )
     }
 }
 
-
-
-
-
-
-   {/* <div onDrop={this.handleDrop}> {
-                this.state.widget1 ?
-                 <Widget1/> 
-                 : 
-                 <EmptyWidget/>} 
-                 </div>
-
-
-                 <div onDrop={this.handleDrop}> {
-                this.state.widget2 ?
-                 <Widget2/> 
-                 : 
-                 <EmptyWidget/>} 
-                 </div>
-
-
-                 <div onDrop={this.handleDrop}> {
-                this.state.widget3 ?
-                 <Widget3/> 
-                 : 
-                 <EmptyWidget/>} 
-                 </div>
-
-
-                 <div onDrop={this.handleDrop}> {
-                this.state.widget4 ?
-                 <Widget4/> 
-                 : 
-                 <EmptyWidget/>} 
-                 </div> */}
-               
-                {/* <Widget1 type={this.state.widget1.type}/> */}
-
-
-                // how Caryn had it
-
-                // const widge4 = ["sudoku", "weather", null, null].map(widgeType => (
-                //     widgeType === null 
-                //         ? <EmptyWidget/>
-                //         : <Widget type={widgeType}/>
-                    
-                // ))
+// export default DropTarget('svg', {}, collect)(WidgetDash);
