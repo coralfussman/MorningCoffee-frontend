@@ -33,8 +33,8 @@ class Widget extends Component {
         }
 
     render() {
-        console.log(this.props )
-        //console.log(this.props.widget)
+     
+  
         const widgetSRC = {
            weather: "https://www.meteoblue.com/en/weather/widget/daily?geoloc=detect&days=5&tempunit=FAHRENHEIT&windunit=MILE_PER_HOUR&precipunit=INCH&coloured=monochrome&pictoicon=0&pictoicon=1&maxtemperature=0&maxtemperature=1&mintemperature=0&mintemperature=1&windspeed=0&windspeed=1&windgust=0&winddirection=0&uv=0&humidity=0&precipitation=0&precipitation=1&precipitationprobability=0&precipitationprobability=1&spot=0&pressure=0&layout=light",
           currency: "https://xeconvert.com/widget1?from=usd&to=eur&lang=&theme=gray&font=12",
@@ -45,9 +45,7 @@ class Widget extends Component {
               game: "https://widgetscode.com/wc/sudoku/all?",
               unit: "https://widgetscode.com/wc/math/all?skin=blk0"
             }
-        
-            // console.log(this.props.type)
-            // console.log(this.props.type.title)
+    
             
         return (
             <div className="widget">

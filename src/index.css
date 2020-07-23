@@ -51,6 +51,34 @@ h3{
   font-weight: 500;
 }
 
+hr{
+  size: 75px;
+  
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.beans {
+  height: 80vh;
+  width: 80vw;
+  z-index: 1;
+
+  position:relative; 
+}
+.overBeans{
+ 
+  text-align: center;
+
+  z-index: 2;
+  position:absolute; 
+  height: 80vh;
+  width: 50vw;
+}
 
 
 /* -------------------------column 1 widgets---------------------------- */
@@ -124,7 +152,7 @@ h3{
 .columnCenterContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  
   align-items:center;
   width: 70%;
   
@@ -138,7 +166,8 @@ h3{
   background: rgb(240, 239, 239);
   padding: 10px;
   margin: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+  
   
 }
 .widgeDash{
@@ -166,18 +195,26 @@ h3{
 
 
 }
+
 .newsContainer {
   display: flex;
   flex-direction: row;
   /* justify-content: space-evenly; */
   width: 100vw;
   max-width: 1033px;
-  height: 70vh;
+  height: 40vh;
   overflow: scroll;
+  
 
 
 }
 
+searchBar{
+  height: 20px;
+  width: 200px;
+  margin: 20px;
+  z-index: 1;
+}
 
 .news{
   font-size: 16px;

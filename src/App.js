@@ -50,7 +50,9 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       },
       widgets: [],
       themeNames: [],
-      token: ""
+      token: "",
+      searchTerm: "",
+      filteredArray: []
 
   
     }
@@ -159,23 +161,25 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
     addOneWidget = (newlyCreatedWidgetDash) => {
       console.log(newlyCreatedWidgetDash)
-      // let copyOfWidgetDash = [...this.state.user.dashboards[0].widget_dashes, newlyCreatedWidgetDash]
-      // let copyOfUser = {
-      //   ...this.state.user.dashboards[0], 
-      //     widget_dashes: copyOfWidgetDash
-      // }
+      let copyOfWidgetDash = [...this.state.user.dashboards[0].widget_dashes, newlyCreatedWidgetDash]
+      let copyOfUser = {
+        ...this.state.user.dashboards[0], 
+          widget_dashes: copyOfWidgetDash
+      }
+       console.log(copyOfWidgetDash)
+       console.log(newlyCreatedWidgetDash)
       // this.setState({
-      //   widget_dashes: copyOfUser
+      //   user: copyOfUser
       // })
     }
 
 
     deleteWidget = (deletedWidgetDash) => {
      
-      let copyOfWidget = this.state.user.dashboards[0].widgets.widget_dash_id.filter((widgetPojo) => {
+      let copyOfWidget = this.state.user.dashboards[0].widgets.filter((widgetPojo) => {
         return widgetPojo.widget_dash_id !== deletedWidgetDash
       })
-      console.log(copyOfWidget)
+     
       this.setState({
        user: { dashboards:[{
                  widgets: copyOfWidget}]}
@@ -186,10 +190,31 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
 
 
+     changeSearchTerm = (termFromChild) => {
+      this.setState({
+        searchTerm: termFromChild
+      })
+    }
+
+    matchedSearch = () => {
+      //console.log(this.state.searchTerm, "This is it")
+      let matchedArray = this.state.results.filter((newsPojo) => {
+      
+        return (
+          newsPojo.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+        
+          )
+      })
+
+            return matchedArray
+         
+    }
+  
+
 
     
 
-
+ 
 
     //----------------RENDERING COMPONENTS-----------------//
 
@@ -216,16 +241,21 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
         user={this.state.user}
         token={this.state.token}
         clearUser={this.clearUser}
+
         dashboardID={this.state.user.dashboards[0].id}
         userWidgets={this.state.user.dashboards[0].widgets}
         widgetDash={this.state.user.dashboards[0].widget_dashes}
         widgets={this.state.widgets}
-        themeNames={this.state.themeNames}
-        userThemes={this.state.user.themes}
-        results={this.state.results}
         addOneWidget={this.addOneWidget}
         deleteWidget={this.deleteWidget}
-          updateDash={this.updateDash} />
+
+        themeNames={this.state.themeNames}
+        userThemes={this.state.user.themes}
+
+        searchTerm={this.state.searchTerm}
+        changeSearchTerm={this.changeSearchTerm}
+        results={this.matchedSearch}
+        updateDash={this.updateDash} />
          
       } else {
         this.props.history.push("/login")
@@ -238,7 +268,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
     
     render() {
-      console.log(this.state.user)
+      //console.log(this.state.user)
      //console.log(this.state.user.dashboards[0].id)
     //console.log(this.state.user.dashboards[0].widgets)
       return (

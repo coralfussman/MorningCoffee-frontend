@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 //import {WidgetDash, NewsContainer} from './DashboardComponents';
 import NewsContainer from './NewsContainer';
 import WidgetDash from './WidgetDash';
-import Widget from './Widget';
 import { Container, Draggable } from "react-smooth-dnd";
 //import {weather, quotes, currency, calendar} from './DashboardComponents'
 //import Svgs from './Svgs';
@@ -88,14 +87,6 @@ class Dashboard extends Component {
             // setstate of userWidgets
             //
             //go to docs e.addedIndex is prob location dropped on/ e.payload is what you're dropping 
-
-            // debugger
-
-            // if(this.state.images.name === this.state.widgets.name){
-            // const selectedWidge = this.props.widgets.map(widgeType => (
-            //          ( <Widget key={widgeType.id} type={widgeType.title} widgetDash={this.props.widgetDash} onDrag={this.handleUpdate} deleteWidget={this.props.deleteWidget}/>)
-            
-            //         ))}
                     
           }
         
@@ -103,11 +94,9 @@ class Dashboard extends Component {
 
    
     render() {
-        // console.log(this.props.userThemes[0].name)
-        // console.log(this.props.themeNames)
-        console.log(this.props.widgetDash)
      
-        const themesDot = this.props.themeNames.map(theme => {
+     
+        const themeDots = this.props.themeNames.map(theme => {
             return <button className={theme.name} key={theme.id} themeName={theme.name} token={this.props.token} updateTheme={this.props.updateTheme} ></button>
            })
 
@@ -122,11 +111,7 @@ class Dashboard extends Component {
                     <h3> Good Morning {this.props.user.name} </h3>
                         <div className="themePanel">
                             <p>Theme:</p>
-                            <div className="coffee"></div>
-                            <div className="blue"></div>
-                            <div className="coral"></div>
-                            {/* <ThemeDot className="themeDots2"/>
-                            <ThemeDot className="themeDots3"/> */}
+                            {themeDots}
 
                         </div>
                         <div className="iconPanel">
@@ -163,8 +148,11 @@ class Dashboard extends Component {
                          <WidgetDash  widgetDash={this.props.widgetDash} userWidgets={this.props.userWidgets} deleteWidget={this.props.deleteWidget} token={this.props.token}/>
                    
                 </Container>    
+                
+        
+       
                     
-                        <NewsContainer themes={this.props.themes} results={this.props.results}/>
+                        <NewsContainer searchTerm={this.props.searchTerm} changeSearchTerm={this.props.changeSearchTerm}  themes={this.props.themes} results={this.props.results}/>
                     
                 </div>
 

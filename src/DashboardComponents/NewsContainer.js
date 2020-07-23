@@ -3,18 +3,33 @@ import ArticleCard from './ArticleCard';
 
 export default class NewsContainer extends Component {
     
+    handleType = e => {
+       // console.log(e.target.value)
+        this.props.changeSearchTerm(e.target.value)
+    }
+
+
     render() {
-        // console.log(this.props.results)
-        //const artys = this.props.results
+        //  console.log(this.props.results)
+        const artys = this.props.results()
        
-        let arrayofArticles = this.props.results.map(( article, index) => {
+        let arrayofArticles = artys.map(( article, index) => {
             return <ArticleCard className="news" key={index} article={article} />
            })
 
 
         return (
+            <div>
+                <input className="searchBar"
+                type="text" 
+                placeholder="Search Headline"
+                value={this.props.searchTerm}
+                onChange={this.handleType}
+                />
             <div className="newsContainer">
+                
                 {arrayofArticles}
+            </div>
             </div>
         )
     }
