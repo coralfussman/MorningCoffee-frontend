@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Form from './components/Form'
 import NavBar from './components/NavBar'
 import About from './components/About'
+import Wellness from './components/Wellness'
 import Dashboard from './DashboardComponents/Dashboard'
 
 
@@ -258,6 +259,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
         themeNames={this.state.themeNames}
         userThemes={this.state.user.themes}
+        //updateTheme={this.updateTheme}
 
         searchTerm={this.state.searchTerm}
         changeSearchTerm={this.changeSearchTerm}
@@ -273,6 +275,10 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       return <About />
     }
 
+    renderWellness = (routerProps) => {
+      return <Wellness />
+    }
+
     
     render() {
       console.log("APP")
@@ -281,7 +287,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     //console.log(this.state.user.dashboards[0].widgets)
       return (
     //     <ThemeProvider themes={this.state.themes}>
-        <div className="App">
+        <div >
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;350;400;500&display=swap');
           </style>
@@ -292,6 +298,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
             <Route path="/register" render={this.renderForm}/>
             <Route path="/dashboard" render={this.renderDashboard} />
             <Route path="/about" render={this.renderAbout} />
+            <Route path="/wellness" render={this.renderWellness} />
           </Switch>
       </div>
   //    </ThemeProvider>

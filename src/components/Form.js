@@ -44,7 +44,7 @@ class Form extends Component {
         <input type="text" autoComplete="off" name="username" value={username} onChange={this.handleChange}/>
         <label htmlFor="password">Password:</label>
         <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
-        <input type="submit" value="Submit"/>
+        <input className="submitButton" type="submit" value="Submit"/>
       </form>
     );
   }

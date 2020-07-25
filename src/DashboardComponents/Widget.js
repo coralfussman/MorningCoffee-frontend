@@ -39,9 +39,9 @@ class Widget extends Component {
            weather: "https://www.meteoblue.com/en/weather/widget/daily?geoloc=detect&days=5&tempunit=FAHRENHEIT&windunit=MILE_PER_HOUR&precipunit=INCH&coloured=monochrome&pictoicon=0&pictoicon=1&maxtemperature=0&maxtemperature=1&mintemperature=0&mintemperature=1&windspeed=0&windspeed=1&windgust=0&winddirection=0&uv=0&humidity=0&precipitation=0&precipitation=1&precipitationprobability=0&precipitationprobability=1&spot=0&pressure=0&layout=light",
           currency: "https://xeconvert.com/widget1?from=usd&to=eur&lang=&theme=gray&font=12",
              quote: "//widget.calendarlabs.com/v1/quot.php?cid=101&ver=1.2&uid=2391332988&c=random&l=en&cbg=FFFFFF&cb=1&cbc=FFFFFF&cf=arial&cfg=262626&qfs=bi&qta=center&tfg=000000&tfs=bi&afc=000000&afs=i",
+          calendar: "//widget.calendarlabs.com/v1/calendar.php?cid=1001&ver=1.2&uid=6984472368&c=8&l=en&cbg=FFFFFF&cfg=000000&hfg=000000&hfg1=000000&ct=1&cb=0&cbc=2275FF&cf=verdana&cp=bottom&sw=0&hp=t&ib=0&ibc=&i=images/",
              clock: "https://widgetscode.com/wc/mclock/all?skin",
-             photo: "//widget.calendarlabs.com/v1/calendar.php?cid=1001&ver=1.2&uid=6984472368&c=8&l=en&cbg=FFFFFF&cfg=000000&hfg=000000&hfg1=000000&ct=1&cb=0&cbc=2275FF&cf=verdana&cp=bottom&sw=0&hp=t&ib=0&ibc=&i=images/",
-            zodiac: "https://widgetscode.com/wc/acute1/all?",
+             music: "https://open.spotify.com/embed/playlist/4HUrL0jPYVgEauoXaqFnEg?si=RsgSRt2NSUmGUDJkS4hvMg",
               game: "https://widgetscode.com/wc/sudoku/all?",
               unit: "https://widgetscode.com/wc/math/all?skin=blk0"
             }
@@ -75,3 +75,5 @@ export default Widget;
 
 
 //<iframe src="https://xeconvert.com/widget1?from=usd&to=eur&lang=&theme=gray&font=12" width="250" height="300" frameborder="0" scrolling="no"></iframe><div style="font-size:12px;font-family:arial;text-align:right;"><a target="_blank" href="https://xeconvert.com/" style="text-decoration:none;color:#999;">Currency converter</a></div><!-- https://xeconvert.com/currency-converter-widget ends here -->
+
+//<iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="320" height="250" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>

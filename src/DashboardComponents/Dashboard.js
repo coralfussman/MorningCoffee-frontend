@@ -9,9 +9,9 @@ import { Container, Draggable } from "react-smooth-dnd";
 import weather from '../weather.svg';
 import currency from '../currency.svg';
 import quote from '../quote.svg';
-import photo from '../photo.svg';
+import calendar from '../calendar.svg';
 import unit from '../unit.svg';
-import zodiac from '../zodiac.svg';
+import music from '../music.svg';
 import clock from '../clock.svg';
 import game from '../game.svg';
 
@@ -32,9 +32,9 @@ class Dashboard extends Component {
           { id: 1, img: weather,  name: 'weather' },
           { id: 2, img: currency, name: 'currency'},
           { id: 3, img: quote,    name: 'quote' },
-          { id: 4, img: photo,    name: 'photo' },
+          { id: 4, img: calendar, name: 'calendar' },
           { id: 5, img: clock,    name: 'clock' },
-          { id: 6, img: zodiac,   name: 'zodiac'},
+          { id: 6, img: music,    name: 'music'},
           { id: 7, img: game,     name: 'game'  },
           { id: 8, img: unit,     name: 'unit'  }
         ]}
@@ -55,10 +55,6 @@ class Dashboard extends Component {
             console.log( widgets)
 
 
-
-            // this.setState({
-            //   widgets: [...widgets, payload]
-            // })
             fetch("http://localhost:4000/widget_dashes", {
                 method: "POST",
                 headers: {
@@ -90,14 +86,18 @@ class Dashboard extends Component {
                     
           }
         
-    
+          updateTheme = (e) => {
+              console.log(e)
+
+          }
+         // updateTheme={this.props.updateTheme}
 
    
     render() {
      
      
         const themeDots = this.props.themeNames.map(theme => {
-            return <button className={theme.name} key={theme.id} themeName={theme.name} token={this.props.token} updateTheme={this.props.updateTheme} ></button>
+            return <button className={theme.name} key={theme.id} themeName={theme.name} token={this.props.token} onClick={this.props.handleTheme} ></button>
            })
 
            const { images } = this.state;
