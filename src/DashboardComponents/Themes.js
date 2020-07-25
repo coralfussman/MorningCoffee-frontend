@@ -1,3 +1,10 @@
+// import { createGlobalStyle} from "styled-components"
+
+// const GlobalStyle = createGlobalStye`
+
+// `
+
+
 export const themes = {
     coffee: {
       primaryColor: "#FFFFFF",

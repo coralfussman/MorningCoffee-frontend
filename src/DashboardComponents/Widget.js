@@ -45,7 +45,7 @@ class Widget extends Component {
               game: "https://widgetscode.com/wc/sudoku/all?",
               unit: "https://widgetscode.com/wc/math/all?skin=blk0"
             }
-    
+            console.log("WIDGET")
             
         return (
             <div className="widget">

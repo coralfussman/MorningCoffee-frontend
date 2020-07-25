@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
-// import ThemeProvider from 'react-theme-provider';
-// import { createGlobalStyle} from "styled-components"
+ //import ThemeProvider from 'react-theme-provider';
+//import { createGlobalStyle} from "styled-components"
 import Home from './components/Home'
 import Form from './components/Form'
 import NavBar from './components/NavBar'
@@ -52,7 +52,8 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       themeNames: [],
       token: "",
       searchTerm: "",
-      filteredArray: []
+      filteredArray: [],
+      userWidgets: []
 
   
     }
@@ -161,29 +162,35 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
     addOneWidget = (newlyCreatedWidgetDash) => {
       console.log(newlyCreatedWidgetDash)
-      let copyOfWidgetDash = [...this.state.user.dashboards[0].widget_dashes, newlyCreatedWidgetDash]
-      let copyOfUser = {
-        ...this.state.user.dashboards[0], 
-          widget_dashes: copyOfWidgetDash
-      }
-       console.log(copyOfWidgetDash)
-       console.log(newlyCreatedWidgetDash)
-      // this.setState({
-      //   user: copyOfUser
-      // })
+      let copyOfWidgetDashes = [...this.state.user.dashboards[0].widgets, newlyCreatedWidgetDash.widget]
+      this.setState(({user}) => ({
+        user: {
+          ...user,
+          dashboards: [{ widgets: copyOfWidgetDashes}, ...user.dashboards]
+        }
+      }))
     }
 
 
+    
+
     deleteWidget = (deletedWidgetDash) => {
      
+      console.log(deletedWidgetDash, "deleted widge dasg")
       let copyOfWidget = this.state.user.dashboards[0].widgets.filter((widgetPojo) => {
         return widgetPojo.widget_dash_id !== deletedWidgetDash
       })
-     
+      
+      this.setState(({user}) => ({
+        user: {
+          ...user,
+          dashboards: [{ widgets: copyOfWidget}, ...user.dashboards]
+        }
+      }))
       this.setState({
-       user: { dashboards:[{
-                 widgets: copyOfWidget}]}
+        userWidgets: copyOfWidget
       })
+       console.log(copyOfWidget, "copy of widge")
     }
 
      //dash functions
@@ -244,7 +251,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
         dashboardID={this.state.user.dashboards[0].id}
         userWidgets={this.state.user.dashboards[0].widgets}
-        widgetDash={this.state.user.dashboards[0].widget_dashes}
+        //widgetDash={this.state.user.dashboards[0].widget_dashes}
         widgets={this.state.widgets}
         addOneWidget={this.addOneWidget}
         deleteWidget={this.deleteWidget}
@@ -268,30 +275,26 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
     
     render() {
-      //console.log(this.state.user)
+      console.log("APP")
+      // console.log(this.state.user.dashboards[0].widgets)
      //console.log(this.state.user.dashboards[0].id)
     //console.log(this.state.user.dashboards[0].widgets)
       return (
-        // <ThemeProvider themes={this.state.themes}>
+    //     <ThemeProvider themes={this.state.themes}>
         <div className="App">
-      {/* <img src={logo} className="widgetIcons" alt="logo" /> */}
-      <style>
-      @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;350;400;500&display=swap');
-      </style>
-      <NavBar/>  
-      {/* <header className="App-header">
-      </header> */}
-      <Switch>
-
-      <Route path="/" exact component={Home}/>
-      <Route path="/login" render={this.renderForm}/>
-      <Route path="/register" render={this.renderForm}/>
-      <Route path="/dashboard" render={this.renderDashboard} />
-      <Route path="/about" render={this.renderAbout} />
-    
-      </Switch>
-    </div>
-    // </ThemeProvider>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;350;400;500&display=swap');
+          </style>
+          <NavBar/>  
+          <Switch>
+            <Route path="/" exact component={Home}/>
+            <Route path="/login" render={this.renderForm}/>
+            <Route path="/register" render={this.renderForm}/>
+            <Route path="/dashboard" render={this.renderDashboard} />
+            <Route path="/about" render={this.renderAbout} />
+          </Switch>
+      </div>
+  //    </ThemeProvider>
     );
   }
 }

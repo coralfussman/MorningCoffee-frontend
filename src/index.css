@@ -9,6 +9,7 @@ body {
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
+  color: #51463a;
  
 }
 
@@ -21,7 +22,7 @@ body {
 .navLink {
   margin: 2px;
   padding: 5px;
-  color: brown;
+  color: #51463a;
 }
 
 
@@ -33,10 +34,25 @@ body {
 .homePg {
   
   display: flex;
-  flex: column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+a {
+  color: #51463a;
+
 }
 
 
@@ -52,7 +68,9 @@ h3{
 }
 
 hr{
-  size: 75px;
+  size: 40px;
+  width: 150px;
+  color: blue;
   
 }
 
@@ -61,6 +79,7 @@ hr{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
   
 }
 .beans {
@@ -77,7 +96,8 @@ hr{
   z-index: 2;
   position:absolute; 
   height: 80vh;
-  width: 50vw;
+  width: 40vw;
+  padding-top: 175px;
 }
 
 

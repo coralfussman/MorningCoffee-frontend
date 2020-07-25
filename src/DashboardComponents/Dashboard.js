@@ -101,7 +101,7 @@ class Dashboard extends Component {
            })
 
            const { images } = this.state;
-
+           console.log("DASHBOARD")
 
         return (
             // <DndProvider backend={Backend}>
@@ -145,7 +145,7 @@ class Dashboard extends Component {
                     behaviour="drop-zone"
                     onDrop={this.onDrop}
                     >
-                         <WidgetDash  widgetDash={this.props.widgetDash} userWidgets={this.props.userWidgets} deleteWidget={this.props.deleteWidget} token={this.props.token}/>
+                        <WidgetDash  widgetDash={this.props.widgetDash}  userWidgets={this.props.userWidgets} addOneWidget={this.props.addOneWidget} deleteWidget={this.props.deleteWidget} token={this.props.token}/>
                    
                 </Container>    
                 
