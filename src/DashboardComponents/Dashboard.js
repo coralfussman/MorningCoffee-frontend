@@ -4,14 +4,14 @@ import NewsContainer from './NewsContainer';
 import WidgetDash from './WidgetDash';
 import { Container, Draggable } from "react-smooth-dnd";
 //import {weather, quotes, currency, calendar} from './DashboardComponents'
-//import Svgs from './Svgs';
+import {Button, SVGPanel, MediaPanel, InvertedFont, ThemePanel} from './Themes';
 
 import weather from '../weather.svg';
 import currency from '../currency.svg';
 import quote from '../quote.svg';
 import calendar from '../calendar.svg';
 import unit from '../unit.svg';
-import music from '../music.svg';
+import zodiac from '../zodiac.svg';
 import clock from '../clock.svg';
 import game from '../game.svg';
 
@@ -32,12 +32,14 @@ class Dashboard extends Component {
           { id: 1, img: weather,  name: 'weather' },
           { id: 2, img: currency, name: 'currency'},
           { id: 3, img: quote,    name: 'quote' },
-          { id: 4, img: calendar, name: 'calendar' },
+          { id: 4, img: calendar, name: 'calendar'},
           { id: 5, img: clock,    name: 'clock' },
-          { id: 6, img: music,    name: 'music'},
-          { id: 7, img: game,     name: 'game'  },
-          { id: 8, img: unit,     name: 'unit'  }
-        ]}
+          { id: 6, img: zodiac,   name: 'zodiac'},
+          { id: 7, img: game,     name: 'game' },
+          { id: 8, img: unit,     name: 'unit' }
+        ],
+        theme: "",
+    }
 
    
 
@@ -86,35 +88,73 @@ class Dashboard extends Component {
                     
           }
         
-          updateTheme = (e) => {
-              console.log(e)
+          handleThemeChange = (name, id) => {
+            console.log(id)
+              console.log(this.props.themeName)
+              console.log(name)
+            //   let name = e.target.value
 
-          }
+            fetch(`http://localhost:4000/users/${this.props.user.id}`, {
+                method: "PATCH",
+                headers: {
+                "Authorization": localStorage.token,
+                "content-type": "application/json"
+                },
+                body: JSON.stringify({
+                new_id: id
+                
+                })
+            })
+            .then(r => r.json())
+            .then((updatedTheme) => {
+                this.props.updateTheme(updatedTheme)
+            })
+            }
+            // let theme = e.target.value;
+            
+            // this.setState({ theme });
+          
          // updateTheme={this.props.updateTheme}
-
-   
+       
     render() {
-     
-     
+    
+        //console.log(this.props.user)
+        // debugger
         const themeDots = this.props.themeNames.map(theme => {
-            return <button className={theme.name} key={theme.id} themeName={theme.name} token={this.props.token} onClick={this.props.handleTheme} ></button>
+            
+            return <button className={theme.name} key={theme.id} value={theme} theme={theme} token={this.props.token} onClick={ ()=> this.handleThemeChange( theme.name,theme.id)} ></button>
            })
-
+           
            const { images } = this.state;
-           console.log("DASHBOARD")
+           
 
+           const currentHour = new Date().getHours();
+
+           const greetingMessage =
+           currentHour >= 4 && currentHour < 12 ? // after 4:00AM and before 12:00PM
+           'Good Morning' :
+           currentHour >= 12 && currentHour <= 17 ? // after 12:00PM and before 6:00pm
+           'Good Afternoon' :
+           currentHour > 17 || currentHour < 4 ? // after 5:59pm or before 4:00AM (to accommodate night owls)
+           'Good Evening' : // if for some reason the calculation didn't work
+           'Welcome'
+      
+          
         return (
             // <DndProvider backend={Backend}>
             <div className="dashContainer">
                 {/* column 1 */}
                 <div className="columnContainer">
-                    <h3> Good Morning {this.props.user.name} </h3>
-                        <div className="themePanel">
+                    <InvertedFont>
+                        <h3> {greetingMessage} {this.props.user.name} </h3>
+                    </InvertedFont>
+                    <ThemePanel>
                             <p>Theme:</p>
                             {themeDots}
 
-                        </div>
-                        <div className="iconPanel">
+                        </ThemePanel>
+                        <InvertedFont/>
+                        <SVGPanel className="iconPanel">
                             <h3 className="titleWidgPanel">Customize <br/> Widgets</h3>
                             <p>Drag & Drop <br/> to empty spots</p>
                             {/* <Svgs/> */} 
@@ -130,7 +170,7 @@ class Dashboard extends Component {
                             ))}
                             </Container>
 
-                        </div>
+                        </SVGPanel>
 
                 </div>
 
@@ -160,15 +200,24 @@ class Dashboard extends Component {
 
                 {/* column 3 */}
                 <div className="columnRightContainer">
-                    <button className="button" onClick={this.props.clearUser}>Sign Out</button>
-                    <div className="iconMediaPanel">
+                    <Button onClick={this.props.clearUser}>Sign Out</Button>
+                    <MediaPanel className="iconMediaPanel">
                         <h3>Social</h3>
+                        <a href="https://www.facebook.com/" >
                         <img src={facebook} className="widgetMIcons" alt="facebook" />
-                        <img src={twitter} className="widgetMIcons" alt="twitter" />
-                        <img src={linkedin} className="widgetMIcons" alt="linkedin" />
-                        <img src={medium} className="widgetMIcons" alt="medium" />
+                        </a>
 
-                    </div>
+                        <a href="https://twitter.com/CoralFussman" >
+                        <img src={twitter} className="widgetMIcons" alt="twitter" />
+                        </a>
+                        <a href="https://www.linkedin.com/in/coral-fussman-21721538/" >
+                        <img src={linkedin} className="widgetMIcons" alt="linkedin" />
+                        </a>
+                        <a href="https://medium.com/@coralfussman" >
+                        <img src={medium} className="widgetMIcons" alt="medium" />
+                        </a>
+
+                    </MediaPanel>
                 </div>
 
 

@@ -2,6 +2,7 @@ import React from 'react'
 
 import beans from '../beans.svg';
 
+
 const About = () => {
    
     return(

@@ -4,14 +4,44 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  height: 100vh;
+  height: 120vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   /* justify-content: center; */
-  color: #51463a;
+  /* color: #51463a; */
  
+}
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+  position: relative;
+  
+}
+.beans {
+  height: 80vh;
+  width: 80vw;
+  z-index: 1;
+
+  position:relative; 
+}
+.overBeans{
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  position:absolute; 
+  height: 65vh;
+  width: 40vw;
+  /* padding-top: 175px; */
+}
+
+.transition {
+  transform: scale(.2);
 }
 
 nav {
@@ -21,6 +51,7 @@ nav {
   align-items: center;
   justify-content: center;
   font-weight: 400;
+  z-index: 3;
 
 }
 
@@ -30,6 +61,7 @@ nav {
   padding: 5px;
   color: #51463a;
   font-weight: 400;
+  z-index: 4;
 
 }
 
@@ -43,7 +75,7 @@ nav {
   
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   min-height: 100vh;
   min-width: 100vw;
@@ -54,6 +86,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
 
 
 }
@@ -79,33 +112,11 @@ h3{
 hr{
   size: 40px;
   width: 150px;
-  color: blue;
+  color: rgb(32, 32, 32);
   
 }
 
-.about {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  
-}
-.beans {
-  height: 80vh;
-  width: 80vw;
-  z-index: 1;
 
-  position:relative; 
-}
-.overBeans{
-  text-align: center;
-  z-index: 2;
-  position:absolute; 
-  height: 80vh;
-  width: 40vw;
-  padding-top: 175px;
-}
 
 .submitButton {
   background: white;
@@ -118,34 +129,89 @@ hr{
   margin-bottom: 20px;
 }
 
+.form {
+  margin: auto;
+  margin-top: 10vh;
+  text-align: center;
+  height: 35vh;
+  width: 30vw;
+  box-shadow: -2px -6px 15px #fff, 2px 6px 15px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+ 
+}
+.formContent {
+  flex-direction: column;
+  align-items: right;
+  text-align: right;
+  justify-content: space-evenly;
+  padding-right: 100px;
+}
+
+.input {
+  margin: 10px;
+  font-family: Jost;
+  font-size: 18px;
+  border: 0ch;
+  background-color: #E8F0FE;
+  color: #51463a;
+  color: rgb(148, 228, 201);
+  
+}
+label {
+font-size: 16px;
+}
+
 
 /* -------------------------column 1 widgets---------------------------- */
 
-.themePanel{
-  
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
+/* themePanel */
 
 .coffee{
-  height: 35px;
-  width: 35px;
+  height: 20px;
+  width: 20px;
   background: rgb(218, 218, 218);
   border-radius: 50%;
   margin: 2px;
 }
 .acqua{
-  height: 35px;
-  width: 35px;
+  height: 20px;
+  width: 20px;
   background: rgb(37, 128, 151);
   border-radius: 50%;
   margin: 2px;
 }
 .coral{
-  height: 35px;
-  width: 35px;
-  background: rgb(228, 96, 136);
+  height: 20px;
+  width: 20px;
+  background: rgb(236, 163, 185);
+  border-radius: 50%;
+  margin: 2px;
+}
+.lemon{
+  height: 20px;
+  width: 20px;
+  background: rgb(255, 239, 92);
+  border-radius: 50%;
+  margin: 2px;
+}
+.abstract{
+  height: 20px;
+  width: 20px;
+  background: rgb(153, 36, 36);
+  border-radius: 50%;
+  margin: 2px;
+}
+.darkmode{
+  height: 20px;
+  width: 20px;
+  background: rgb(78, 71, 71);
+  border-radius: 50%;
+  margin: 2px;
+}
+.summer{
+  height: 20px;
+  width: 20px;
+  background: rgb(32, 221, 142);
   border-radius: 50%;
   margin: 2px;
 }
@@ -153,6 +219,7 @@ hr{
 .titleWidgPanel{
   font-weight: 500;
   margin: 0;
+  margin-top: 10px;
   padding-bottom: 0;
 }
 
@@ -168,21 +235,7 @@ hr{
   width: 15%;
   
 }
-.iconPanel{
-  margin: 2%;
-  display: flex;
-  flex-direction: column;
-  background: rgb(229, 229, 229);
-  height: 70vh;
-  width: 90%;
-  justify-content: center;
-  border-radius: 0px 50px 50px 0px;
-  align-items: center;
-  box-shadow: 5px 5px 15px 5px rgb(207, 207, 207);
-  overflow: auto;
-
-
-}
+/* iconPanel */
 
 /* --------------column 2 widgets & news (2 rows)------------------- */
 
@@ -192,22 +245,11 @@ hr{
   flex-direction: column;
   
   align-items:center;
-  width: 70%;
+  width: 50%;
   
 }
-.rowContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 30vh;
-  width: 70vw;
-  background: rgb(240, 239, 239);
-  padding: 10px;
-  margin: 10px;
-  margin-bottom: 10px;
-  
-  
-}
+/* rowContainer  */
+
 .widgeDash{
   display: flex;
   flex-direction: row;
@@ -218,21 +260,13 @@ hr{
 .widget {
   height: 250px;
   width: 320px;
+  z-index: 1;
   
 }
 
 
 /* row 2 */
-.rowTwoContainer {
-  display: flex;
-  flex-direction: column;
-  /* justify-content: space-evenly; */
- 
-  height: 70vh;
-  overflow: auto;
 
-
-}
 
 .newsContainer {
   display: flex;
@@ -248,74 +282,28 @@ hr{
 
 }
 
-.searchBar {
-  align-items: left;
-  height: 30px;
-  width: 200px;
-  margin: 20px;
-  float: left;
-  z-index: 1;
-  border: 0;
-  border-bottom: 4px solid rgba(234, 192, 162);
+/* searchBar  */
 
-}
+/* news */
 
-
-.news{
-  font-size: 16px;
-  font-weight: 300;
-  margin: 10px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background: rgb(240, 239, 239);
-  height: 300px;
-  width: 300px;
-  box-shadow: 5px 5px 15px 5px rgb(192, 192, 192);
-  
-
-}
 .articleImg {
 
-  height: 150px;
-  width: 150px;
-  margin: 20px;
+  height: 140px;
+  width: 210px;
+  margin: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: bottom;
+
 }
 
-.DeleteBttn {
-  height: 25px;
-  width: 25px;
-  background: rgb(243, 101, 101);
-  border-radius: 50%;
-  border-width: 0ch;
-  margin: -5px;
-  padding: 0px;
-  border-color: rgb(180, 180, 180);
-  font-family: Jost;
-  font-size: 20px;
-  color: rgb(92, 92, 92);
-  margin-bottom: 20px;
-  z-index: 1;
-  font-size: 12px;
-}
+/* DeleteBttn  */
 
 
 
 /* -----------------------column 3 media badges-------------------------- */
 
 
-/* .columnRightContainer {
-  display: flex;
-  flex-direction: column;
- 
-  align-items: right;
-  align-content: right;
-  
-  width: 15%;
- 
-  
-} */
 button {
   background: white;
   border-radius: 8px 8px 8px 8px;
@@ -336,19 +324,10 @@ button {
   padding: 10px;
 }
 
-.iconMediaPanel{
-  margin-left: 50px;
-  display: flex;
-  flex-direction: column;
-  background: rgb(229, 229, 229);
-  height: 70%;
-  width: 100px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px 0px 0px 50px;
-  box-shadow: 5px 5px 15px 5px rgb(192, 192, 192);
+/* iconMediaPanel */
 
-}
+
+/*--------------------Wellness Page------------------ */
 
 
 
@@ -376,7 +355,7 @@ button {
 }
 
 .timer{
-  
+
   z-index: 2;
   position: absolute;
 }

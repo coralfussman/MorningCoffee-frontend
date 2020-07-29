@@ -33,7 +33,7 @@ class Home extends React.Component {
         <br/>
         <div onCLick={this.handleClick}> { 
         this.state.home
-        ? <h2>by Coral</h2>
+        ? <h2>by CORAL</h2>
         : <h4> <Link  to="/register"> Click to register </Link> </h4>
         } </div>
        

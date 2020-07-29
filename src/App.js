@@ -1,18 +1,20 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
- //import ThemeProvider from 'react-theme-provider';
-//import { createGlobalStyle} from "styled-components"
+import {ThemeProvider} from 'styled-components';
+import { createGlobalStyle} from "styled-components"
 import Home from './components/Home'
 import Form from './components/Form'
 import NavBar from './components/NavBar'
 import About from './components/About'
 import Wellness from './components/Wellness'
 import Dashboard from './DashboardComponents/Dashboard'
+import GlobalStyle from './DashboardComponents/GlobalStyle'
+//import Theme from './DashboardComponents/Themes';
 
+import logo from './logo.svg';
 
-
-// import { themes } from "./DashboardComponents/Themes";
-
+import  {themes} from "./DashboardComponents/Themes";
+// import theme from 'styled-theming';
 
 
 
@@ -43,7 +45,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       ],
         themes: [
           {
-            id: 0,
+            id: 1,
             name: ""
           }
          
@@ -125,8 +127,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
           body: JSON.stringify(userInfo)
         })
           .then(r => r.json())
-          .then(console.log)
-          .then(this.handleResponse)
+          // .then(r => this.handleResponse(r))
           
       }
 
@@ -153,9 +154,18 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     clearUser = (e) => {
       // window.location.reload(false)
       this.setState({
-        user: undefined
+        user: {
+          id: 0,
+          themes: [
+            {
+              id: 1,
+              name: "coffee"
+            }
+           
+          ]
+        }
       })
-      this.props.history.push("/home")
+      this.props.history.push("/")
     }
 
 
@@ -194,9 +204,10 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
        console.log(copyOfWidget, "copy of widge")
     }
 
+
+
+
      //dash functions
-
-
 
      changeSearchTerm = (termFromChild) => {
       this.setState({
@@ -218,11 +229,43 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
          
     }
   
+    //theme functions
+    updateTheme = (updatedPojo) => {
+      console.log(updatedPojo)
+    //   let copyOfObject = this.state.user.themes[0].name.map((themePojo) => {
+    //     if (themePojo.id === updatedPojo.id) {
+    //         return updatedPojo
+    //     } else {
+    //         return themePojo
+    //     }
+    // })
+    this.setState({
+        user: updatedPojo
+    })
+    }
 
+  //   themeSetter = (themes) => {
+  //     let setTheme = themes.filter(theme => {
+      
+  //       return (
+  //         theme.includes(this.state.user.themes[0].name)
+        
+  //         )
+     
+  //   })
+  //   console.log(setTheme)
+  //   return setTheme
+  // }
+  // mode = (this.themeSetter)
 
-    
+//   getKeyByValue =(themes, value) { 
+//     return themes.keys(themes).find(theme => theme[this.state.user.themes] === this.state.user.themes[0]); 
+// } 
 
- 
+  //basically themeProvider props are passing down the state object that doesn't know anything about the themes props
+  // 
+  
+  
 
     //----------------RENDERING COMPONENTS-----------------//
 
@@ -253,13 +296,13 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
         dashboardID={this.state.user.dashboards[0].id}
         userWidgets={this.state.user.dashboards[0].widgets}
         //widgetDash={this.state.user.dashboards[0].widget_dashes}
-        widgets={this.state.widgets}
+        // widgets={this.state.widgets}
         addOneWidget={this.addOneWidget}
         deleteWidget={this.deleteWidget}
 
         themeNames={this.state.themeNames}
         userThemes={this.state.user.themes}
-        //updateTheme={this.updateTheme}
+        updateTheme={this.updateTheme}
 
         searchTerm={this.state.searchTerm}
         changeSearchTerm={this.changeSearchTerm}
@@ -279,29 +322,52 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       return <Wellness />
     }
 
+    // GlobalStyle = createGlobalStyle`
+
+    // body {
+
+    //   /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEDRoHPhaDnUdNu0ks9o7zkjb4SSpxVe0rlg&usqp=CAU); */
+    //   background: ${({ theme }) => theme.primaryColor};
+    //   color: ${({ theme }) => theme.textColor};
+    
+    // }
+    // `
+
+    
+    
+
     
     render() {
-      console.log("APP")
-      // console.log(this.state.user.dashboards[0].widgets)
+      const mode = this.state.user.themes[0].name
+     const style = themes[mode]
+      //  console.log(this.state.user.themes[0])
+        console.log(this.state.user)
+      //  console.log(this.state.themeNames)
      //console.log(this.state.user.dashboards[0].id)
     //console.log(this.state.user.dashboards[0].widgets)
+    console.log(style)
+    console.log(themes)
       return (
-    //     <ThemeProvider themes={this.state.themes}>
-        <div >
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;350;400;500&display=swap');
-          </style>
-          <NavBar/>  
-          <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/login" render={this.renderForm}/>
-            <Route path="/register" render={this.renderForm}/>
-            <Route path="/dashboard" render={this.renderDashboard} />
-            <Route path="/about" render={this.renderAbout} />
-            <Route path="/wellness" render={this.renderWellness} />
-          </Switch>
-      </div>
-  //    </ThemeProvider>
+        // <Theme>
+        <ThemeProvider theme={{themes: style}} > 
+          <GlobalStyle  />
+            <div >
+              <style>
+                @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;350;400;500&display=swap');
+              </style>
+            
+              <NavBar/>  
+              <Switch>
+                <Route path="/" exact component={Home}/>
+                <Route path="/login" render={this.renderForm}/>
+                <Route path="/register" render={this.renderForm}/>
+                <Route path="/dashboard" render={this.renderDashboard} />
+                <Route path="/wellness" render={this.renderWellness} />
+                <Route path="/about" render={this.renderAbout} />
+              </Switch>
+            </div>
+        </ThemeProvider>
+        // </Theme>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Widget from './Widget';
 import EmptyWidget from './EmptyWidget';
-
+import { WidgeDash} from './Themes';
 
 
 export default class WidgetDash extends Component {
@@ -11,7 +11,7 @@ export default class WidgetDash extends Component {
          
         
         const widgets = this.props.userWidgets.map(widgeType => (
-            widgeType === null 
+            widgeType === []
                 ? <EmptyWidget/>
                 : <Widget key={widgeType.id} widget={widgeType} type={widgeType.title} widgetDash={this.props.widgetDash} onDrag={this.handleUpdate} deleteWidget={this.props.deleteWidget}/>
         
@@ -19,11 +19,13 @@ export default class WidgetDash extends Component {
         console.log("WIDGET DASH")
        
         return (
-            <div className="rowContainer">
+            <WidgeDash>
+
+           
 
              {widgets}
             
-            </div>
+            </WidgeDash>
         )
     }
 }

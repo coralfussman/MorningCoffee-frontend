@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {themes, NewsCards} from './Themes';
 
 class ArticleCard extends React.Component {
   render() {
@@ -7,14 +7,15 @@ class ArticleCard extends React.Component {
     // console.log(this.props.article)
     return(
 
-      <div className="news">
+      <NewsCards className="news">
         <h3>{title}</h3>
         <br/>
-        <img className="articleImg" src={thumbnail_standard} width="150px" height="150px" alt="nytimage" />
-         <a href={url} > Link Here</a>
+        <a href={url} >
+        <img className="articleImg" src={this.props.article.multimedia[1].url}  alt="nytimage" />
+        </a>
         
 
-      </div>
+      </NewsCards>
 
   
     

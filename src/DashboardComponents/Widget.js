@@ -1,22 +1,12 @@
 import React, { Component } from 'react'
 
-
+ import {themes, ExButton} from './Themes';
 
 class Widget extends Component {
     state={
         title: []
       }
       
-      
-    //   showWidget = (id) => {
-    //       const findWidget = this.state.widgets.find(widgeObj => widgeObj.id === id)
-    //       if (this.state.widget === false){
-    //         this.setState({
-    //           selectedWidget: findWidget,
-    //           widget: true
-    //         })
-    //       }
-    //     }
 
    
     handleDelete = (e) => {
@@ -40,9 +30,9 @@ class Widget extends Component {
           currency: "https://xeconvert.com/widget1?from=usd&to=eur&lang=&theme=gray&font=12",
              quote: "//widget.calendarlabs.com/v1/quot.php?cid=101&ver=1.2&uid=2391332988&c=random&l=en&cbg=FFFFFF&cb=1&cbc=FFFFFF&cf=arial&cfg=262626&qfs=bi&qta=center&tfg=000000&tfs=bi&afc=000000&afs=i",
           calendar: "//widget.calendarlabs.com/v1/calendar.php?cid=1001&ver=1.2&uid=6984472368&c=8&l=en&cbg=FFFFFF&cfg=000000&hfg=000000&hfg1=000000&ct=1&cb=0&cbc=2275FF&cf=verdana&cp=bottom&sw=0&hp=t&ib=0&ibc=&i=images/",
-             clock: "https://widgetscode.com/wc/mclock/all?skin",
-             music: "https://open.spotify.com/embed/playlist/4HUrL0jPYVgEauoXaqFnEg?si=RsgSRt2NSUmGUDJkS4hvMg",
-              game: "https://widgetscode.com/wc/sudoku/all?",
+             clock: "https://widgetscode.com/wc/mclock/all?skin=FFFFFF",
+            zodiac: "http://calculator-1.com/outdoor/?f=FFFFFF&r=FFFFFF",
+              game: "//widget.websudoku.com/?level=2",
               unit: "https://widgetscode.com/wc/math/all?skin=blk0"
             }
             console.log("WIDGET")
@@ -50,8 +40,9 @@ class Widget extends Component {
         return (
             <div className="widget">
             
-            <button className="DeleteBttn" onClick={this.handleDelete}> X </button>
-            <iframe title={this.props.type.title} src={widgetSRC[this.props.type]} width="300px" height="250px" frameBorder="0"></iframe>
+            <ExButton className="DeleteBttn" onClick={this.handleDelete}> X </ExButton>
+            <iframe title={this.props.type.title} src={widgetSRC[this.props.type]} width="300px" height="250px" frameBorder="0"  ></iframe>
+
             </div>
         )
     }
@@ -77,3 +68,10 @@ export default Widget;
 //<iframe src="https://xeconvert.com/widget1?from=usd&to=eur&lang=&theme=gray&font=12" width="250" height="300" frameborder="0" scrolling="no"></iframe><div style="font-size:12px;font-family:arial;text-align:right;"><a target="_blank" href="https://xeconvert.com/" style="text-decoration:none;color:#999;">Currency converter</a></div><!-- https://xeconvert.com/currency-converter-widget ends here -->
 
 //<iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="320" height="250" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+//<iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="320" height="250" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+//<iframe src="https://open.spotify.com/embed/playlist/3HWwQHAJuzCkwF9jpW77R4" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+//<IFRAME SRC="//widget.websudoku.com/?level=2" WIDTH="200" HEIGHT="260" SCROLLING="no" FRAMEBORDER="0"></IFRAME>
+

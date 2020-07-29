@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ArticleCard from './ArticleCard';
+import {SearchBar} from './Themes';
+//import {themes} from './Themes';
+
 
 export default class NewsContainer extends Component {
     
@@ -20,12 +23,12 @@ export default class NewsContainer extends Component {
 
         return (
             <div>
-                <input className="searchBar"
+                <SearchBar className="searchBar"
                 type="text" 
                 placeholder="Search Headline"
                 value={this.props.searchTerm}
                 onChange={this.handleType}
-                />
+                ></SearchBar>
             <div className="newsContainer">
                 
                 {arrayofArticles}

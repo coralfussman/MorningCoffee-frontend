@@ -36,15 +36,21 @@ class Form extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <h1>{formName}</h1>
 
-        <label htmlFor="name">Name:</label>
-        <input type="text" autoComplete="off" name="name" value={name} onChange={this.handleChange}/>
-        <label htmlFor="username">Username:</label>
-        <input type="text" autoComplete="off" name="username" value={username} onChange={this.handleChange}/>
-        <label htmlFor="password">Password:</label>
-        <input type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/>
-        <input className="submitButton" type="submit" value="Submit"/>
+        <div className="form">
+        <h2>{formName}</h2>
+        <h3>Hey, Good to see you! </h3>
+          <div className="formContent">
+            <label htmlFor="name">Name:</label>
+            <input className="input" type="text" autoComplete="off" name="name" value={name} onChange={this.handleChange}/><br/>
+            <label htmlFor="username">Username:</label>
+            <input className="input" type="text" autoComplete="off" name="username" value={username} onChange={this.handleChange}/><br/>
+            <label htmlFor="password">Password:</label>
+            <input className="input" type="password" autoComplete="off" name="password" value={password} onChange={this.handleChange}/><br/>
+          </div>
+            <input className="submitButton" type="submit" value="Submit"/>
+        
+        </div>
       </form>
     );
   }
