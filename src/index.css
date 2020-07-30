@@ -14,10 +14,7 @@ body {
   /* color: #51463a; */
  
 }
-.App {
-  height: 120vh;
-  width: 100vw;
-}
+
 .about {
   display: flex;
   flex-direction: column;
