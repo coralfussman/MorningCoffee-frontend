@@ -73,8 +73,8 @@ export const InvertedFont = styled.h3`
   `
 
 export const SVG = styled.img`
-  
-  body: ${props => props.theme.themes.secondaryColor}
+  fill: ${props => props.theme.themes.accentColor}
+
 `
 
 export const ThemePanel = styled.div`
@@ -181,6 +181,7 @@ export const NewsCards = styled.div`
 font-size: 16px;
   font-weight: 300;
   margin: 5px;
+  margin-top: 18px;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -191,7 +192,36 @@ font-size: 16px;
   width: 300px;
   box-shadow: 5px 5px 15px 5px rgb(192, 192, 192);
   justify-content: space-evenly;
+  transition: transform .2s;
+
+  &:hover {
+            
+            transform: scale(1.08);
+        
+    }
   
+  `
+
+  export const SignOut = styled.button`
+
+  padding: 10px 20px 10px 20px;
+  background: white;
+  border-radius: 15px 15px 15px 15px;
+  border-width: 0ch;
+  border-color: rgb(180, 180, 180);
+  font-family: Jost;
+  font-size: 20px;
+  color: rgb(92, 92, 92);
+  margin-bottom: 20px;
+  background: ${props => props.theme.themes.primaryColor};
+
+  &:hover {
+            transform: scale(1.07);
+            background: ${props => props.theme.themes.accentColor};
+
+    }
+  
+
   `
   /* ${props => props.selected ? 'transform: translateX(5%);' : null} */
  /* background: ${props => props.themes.primaryColor}; */

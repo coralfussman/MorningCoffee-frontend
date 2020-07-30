@@ -4,7 +4,7 @@ import NewsContainer from './NewsContainer';
 import WidgetDash from './WidgetDash';
 import { Container, Draggable } from "react-smooth-dnd";
 //import {weather, quotes, currency, calendar} from './DashboardComponents'
-import {Button, SVGPanel, MediaPanel, InvertedFont, ThemePanel, SVG} from './Themes';
+import {Button, SVGPanel, MediaPanel, InvertedFont, ThemePanel, SVG, SignOut} from './Themes';
 
 import weather from '../weather.svg';
 import currency from '../currency.svg';
@@ -193,7 +193,7 @@ class Dashboard extends Component {
 
                 {/* column 3 */}
                 <div className="columnRightContainer">
-                    <Button onClick={this.props.clearUser}>Sign Out</Button>
+                    <SignOut onClick={this.props.clearUser}>Sign Out</SignOut>
                     <MediaPanel className="iconMediaPanel">
                         <h3>Social</h3>
                         <a href="https://www.facebook.com/" >

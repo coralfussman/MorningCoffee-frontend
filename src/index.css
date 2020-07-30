@@ -174,6 +174,11 @@ font-size: 16px;
   background: rgb(218, 218, 218);
   border-radius: 50%;
   margin: 2px;
+  
+}
+.coffee:hover {
+  transform: scale(1.3);
+  box-shadow: 2px 2px 12px 2px rgba(141, 141, 141, 0.8);
 }
 .acqua{
   height: 20px;
@@ -182,12 +187,20 @@ font-size: 16px;
   border-radius: 50%;
   margin: 2px;
 }
+.acqua:hover {
+  transform: scale(1.3);
+  box-shadow: 2px 2px 12px 2px rgba(141, 141, 141, 0.8);
+}
 .coral{
   height: 20px;
   width: 20px;
   background: rgb(236, 163, 185);
   border-radius: 50%;
   margin: 2px;
+}
+.coral:hover {
+  transform: scale(1.3);
+  box-shadow: 2px 2px 12px 2px rgba(141, 141, 141, 0.8);
 }
 .lemon{
   height: 20px;
@@ -196,6 +209,10 @@ font-size: 16px;
   border-radius: 50%;
   margin: 2px;
 }
+.lemon:hover {
+  transform: scale(1.3);
+  box-shadow: 2px 2px 12px 2px rgba(141, 141, 141, 0.8);
+}
 .abstract{
   height: 20px;
   width: 20px;
@@ -203,6 +220,11 @@ font-size: 16px;
   border-radius: 50%;
   margin: 2px;
 }
+.abstract:hover {
+  transform: scale(1.3);
+  box-shadow: 2px 2px 12px 2px rgba(141, 141, 141, 0.8);
+}
+
 .darkmode{
   height: 20px;
   width: 20px;
@@ -210,6 +232,12 @@ font-size: 16px;
   border-radius: 50%;
   margin: 2px;
 }
+
+.darkmode:hover {
+  transform: scale(1.3);
+  box-shadow: 2px 2px 12px 2px rgba(141, 141, 141, 0.8);
+}
+
 .summer{
   height: 20px;
   width: 20px;
@@ -217,6 +245,11 @@ font-size: 16px;
   border-radius: 50%;
   margin: 2px;
 }
+.summer:hover {
+  transform: scale(1.3);
+  box-shadow: 2px 2px 12px 2px rgba(141, 141, 141, 0.8);
+}
+
 
 .titleWidgPanel{
   font-weight: 500;
@@ -271,12 +304,14 @@ font-size: 16px;
 
 
 .newsContainer {
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
+ 
   /* justify-content: space-evenly; */
   width: 100vw;
   max-width: 1033px;
-  height: 40vh;
+  height: 60vh;
   overflow: scroll;
   float: center;
   
@@ -314,7 +349,7 @@ button {
   font-family: Jost;
   font-size: 20px;
   color: rgb(92, 92, 92);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .widgetIcons {
   width: 6vh;  
