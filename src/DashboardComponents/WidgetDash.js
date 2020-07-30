@@ -10,10 +10,9 @@ export default class WidgetDash extends Component {
          console.log(this.props.userWidgets, "users widgets")
          
         
-        const widgets = this.props.userWidgets.map(widgeType => (
-            widgeType === []
-                ? <EmptyWidget/>
-                : <Widget key={widgeType.id} widget={widgeType} type={widgeType.title} widgetDash={this.props.widgetDash} onDrag={this.handleUpdate} deleteWidget={this.props.deleteWidget}/>
+        const widgets = this.props.userWidgets.map((widgeType) => (
+              
+             <Widget key={widgeType.id} widget={widgeType} type={widgeType.title} widgetDash={this.props.widgetDash} onDrag={this.handleUpdate} deleteWidget={this.props.deleteWidget}/>
         
         ))
         console.log("WIDGET DASH")
@@ -23,7 +22,7 @@ export default class WidgetDash extends Component {
 
            
 
-             {widgets}
+             {widgets.length === 0 ? <EmptyWidget/> : widgets }
             
             </WidgeDash>
         )

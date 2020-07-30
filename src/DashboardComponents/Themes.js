@@ -40,12 +40,12 @@ export const themes = {
 
     }, 
     abstract: {
-      primaryColor: "rgb(229, 229, 229, .5)",
-      accentColor: "#B9667F",
-      backgroundColor: "#EA5358",
-      textColor: "#000000",
-      secondaryColor: "#B9667F",
-      backgroundImage: 'https://free4kwallpapers.com/uploads/originals/2018/01/28/abstract-background-wallpaper.jpg'
+      primaryColor: 'rgb(229, 229, 229, .8)',
+      accentColor: "rgb(216, 142, 93)",
+      backgroundColor: "#F9F9F9",
+      textColor: "#51463A",
+      secondaryColor: "#51463A",
+      backgroundImage: 'http://www.seekgif.com/uploads/vintage-wooden-background-8.jpeg'
 
     },
     summer: {
@@ -53,7 +53,7 @@ export const themes = {
       accentColor: "#458622",
       backgroundColor: "#EA5358",
       textColor: "#000000",
-      secondaryColor: "#B9667F",
+      secondaryColor: "#458622",
       backgroundImage: 'https://c.stocksy.com/a/PqU200/z9/595225.jpg'
     },
     lemon: {
@@ -66,11 +66,16 @@ export const themes = {
     }
 }
   
- 
-  export const InvertedFont = styled.h3`
-   
-    color: ${props => props.theme.themes.secondaryColor}
-   `
+
+export const InvertedFont = styled.h3`
+  
+  color: ${props => props.theme.themes.secondaryColor}
+  `
+
+export const SVG = styled.img`
+  
+  body: ${props => props.theme.themes.secondaryColor}
+`
 
 export const ThemePanel = styled.div`
 

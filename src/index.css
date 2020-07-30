@@ -4,8 +4,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  height: 120vh;
-  width: 100vw;
+  /* height: 120vh;
+  width: 100vw; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,6 +13,10 @@ body {
   /* justify-content: center; */
   /* color: #51463a; */
  
+}
+.App {
+  height: 120vh;
+  width: 100vw;
 }
 .about {
   display: flex;
@@ -62,6 +66,7 @@ nav {
   color: #51463a;
   font-weight: 400;
   z-index: 4;
+
 
 }
 
@@ -197,7 +202,7 @@ font-size: 16px;
 .abstract{
   height: 20px;
   width: 20px;
-  background: rgb(153, 36, 36);
+  background: rgb(216, 142, 93);
   border-radius: 50%;
   margin: 2px;
 }
@@ -333,7 +338,7 @@ button {
 
 
 .loader {
-  height: 40vmin;
+  height: 30vmin;
   pointer-events: none;
   z-index: 1;
   position: relative;
@@ -357,6 +362,6 @@ button {
 .timer{
 
   z-index: 2;
-  position: absolute;
+  position: relative;
 }
 

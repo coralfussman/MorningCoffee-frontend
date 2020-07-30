@@ -9,19 +9,14 @@ import About from './components/About'
 import Wellness from './components/Wellness'
 import Dashboard from './DashboardComponents/Dashboard'
 import GlobalStyle from './DashboardComponents/GlobalStyle'
-//import Theme from './DashboardComponents/Themes';
 
 import logo from './logo.svg';
 
 import  {themes} from "./DashboardComponents/Themes";
-// import theme from 'styled-theming';
 
 
 
 import {withRouter} from 'react-router-dom'
-//import './App.css';
-//import Draggable from 'react-draggable';
-
 
 
 
@@ -36,9 +31,10 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       user: {
         id: 0,
         username: "",
+        name: "",
         dashboards: [
           {
-          widget_dashes: [],
+          // widget_dashes: [],
           widgets: []
         }
 
@@ -56,7 +52,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       token: "",
       searchTerm: "",
       filteredArray: [],
-      userWidgets: []
+      // userWidgets: []
 
   
     }
@@ -127,7 +123,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
           body: JSON.stringify(userInfo)
         })
           .then(r => r.json())
-          // .then(r => this.handleResponse(r))
+          .then(r => this.handleResponse(r))
           
       }
 
@@ -149,7 +145,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
     //----------------SETTING STATE FUNCTIONS-----------------//
    
-    // User functions
+    // ---------User functions
 
     clearUser = (e) => {
       // window.location.reload(false)
@@ -169,17 +165,21 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     }
 
 
-    //widget functions
+    //-----------widget functions
 
     addOneWidget = (newlyCreatedWidgetDash) => {
       console.log(newlyCreatedWidgetDash)
-      let copyOfWidgetDashes = [...this.state.user.dashboards[0].widgets, newlyCreatedWidgetDash.widget]
+      let copyOfWidgets = [...this.state.user.dashboards[0].widgets, newlyCreatedWidgetDash]
+      let copyOfWidgetDash = this.state.user.dashboards[0].widget_dashes
       this.setState(({user}) => ({
         user: {
           ...user,
-          dashboards: [{ widgets: copyOfWidgetDashes}, ...user.dashboards]
+          dashboards: [{ id: "1", widget_dashes: copyOfWidgetDash, widgets: copyOfWidgets}]
         }
+        
       }))
+    
+      console.log(copyOfWidgets, "copy of widge")
     }
 
 
@@ -187,27 +187,26 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
 
     deleteWidget = (deletedWidgetDash) => {
      
-      console.log(deletedWidgetDash, "deleted widge dasg")
-      let copyOfWidget = this.state.user.dashboards[0].widgets.filter((widgetPojo) => {
+      console.log(deletedWidgetDash, "deleted widge dash")
+      let copyOfWidgets = this.state.user.dashboards[0].widgets.filter((widgetPojo) => {
         return widgetPojo.widget_dash_id !== deletedWidgetDash
+        // return widgetPojo ? widgetPojo.widget_dash_id !== deletedWidgetDash : this.state.user.dashboards[0].widgets
       })
+      let copyOfWidgetDash = this.state.user.dashboards[0].widget_dashes
       
       this.setState(({user}) => ({
         user: {
           ...user,
-          dashboards: [{ widgets: copyOfWidget}, ...user.dashboards]
+          dashboards: [{id: "1", widget_dashes: copyOfWidgetDash, widgets: copyOfWidgets}]
         }
       }))
-      this.setState({
-        userWidgets: copyOfWidget
-      })
-       console.log(copyOfWidget, "copy of widge")
+      console.log(copyOfWidgets, "copy of widge")
     }
 
 
 
 
-     //dash functions
+     //------dash functions
 
      changeSearchTerm = (termFromChild) => {
       this.setState({
@@ -244,26 +243,6 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     })
     }
 
-  //   themeSetter = (themes) => {
-  //     let setTheme = themes.filter(theme => {
-      
-  //       return (
-  //         theme.includes(this.state.user.themes[0].name)
-        
-  //         )
-     
-  //   })
-  //   console.log(setTheme)
-  //   return setTheme
-  // }
-  // mode = (this.themeSetter)
-
-//   getKeyByValue =(themes, value) { 
-//     return themes.keys(themes).find(theme => theme[this.state.user.themes] === this.state.user.themes[0]); 
-// } 
-
-  //basically themeProvider props are passing down the state object that doesn't know anything about the themes props
-  // 
   
   
 
@@ -322,31 +301,20 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       return <Wellness />
     }
 
-    // GlobalStyle = createGlobalStyle`
-
-    // body {
-
-    //   /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEDRoHPhaDnUdNu0ks9o7zkjb4SSpxVe0rlg&usqp=CAU); */
-    //   background: ${({ theme }) => theme.primaryColor};
-    //   color: ${({ theme }) => theme.textColor};
-    
-    // }
-    // `
-
     
     
 
     
     render() {
       const mode = this.state.user.themes[0].name
-     const style = themes[mode]
-      //  console.log(this.state.user.themes[0])
-        console.log(this.state.user)
-      //  console.log(this.state.themeNames)
-     //console.log(this.state.user.dashboards[0].id)
+      const style = themes[mode]
+    //  console.log(this.state.user.themes[0])
+    console.log(this.state.user)
+    //  console.log(this.state.themeNames)
+    //console.log(this.state.user.dashboards[0].id)
     //console.log(this.state.user.dashboards[0].widgets)
-    console.log(style)
-    console.log(themes)
+    // console.log(style)
+    // console.log(themes)
       return (
         // <Theme>
         <ThemeProvider theme={{themes: style}} > 

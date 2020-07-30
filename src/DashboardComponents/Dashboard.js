@@ -4,7 +4,7 @@ import NewsContainer from './NewsContainer';
 import WidgetDash from './WidgetDash';
 import { Container, Draggable } from "react-smooth-dnd";
 //import {weather, quotes, currency, calendar} from './DashboardComponents'
-import {Button, SVGPanel, MediaPanel, InvertedFont, ThemePanel} from './Themes';
+import {Button, SVGPanel, MediaPanel, InvertedFont, ThemePanel, SVG} from './Themes';
 
 import weather from '../weather.svg';
 import currency from '../currency.svg';
@@ -27,7 +27,7 @@ import twitter from '../twitter.svg';
 class Dashboard extends Component {
 
     state = {
-        widgets: [],
+
         images: [
           { id: 1, img: weather,  name: 'weather' },
           { id: 2, img: currency, name: 'currency'},
@@ -51,10 +51,9 @@ class Dashboard extends Component {
             
             const { addedIndex, payload } = dropResult;
             
-            const widgets = [...this.state.widgets]
             console.log( this.props.dashboardID)
             console.log( payload.id)
-            console.log( widgets)
+   
 
 
             fetch("http://localhost:4000/widget_dashes", {
@@ -74,16 +73,14 @@ class Dashboard extends Component {
               .then(r => r.json())
               .then((newlyCreatedWidgetDash) => {
                   console.log(newlyCreatedWidgetDash)
-                
+
                  this.props.addOneWidget(newlyCreatedWidgetDash);
               })
              
             
             //added index matches widget dash location (send to add widget in state to pass props up)
-
-            //...... app........
+            //...... in app........
             // setstate of userWidgets
-            //
             //go to docs e.addedIndex is prob location dropped on/ e.payload is what you're dropping 
                     
           }
@@ -110,11 +107,7 @@ class Dashboard extends Component {
                 this.props.updateTheme(updatedTheme)
             })
             }
-            // let theme = e.target.value;
-            
-            // this.setState({ theme });
           
-         // updateTheme={this.props.updateTheme}
        
     render() {
     
@@ -141,7 +134,7 @@ class Dashboard extends Component {
       
           
         return (
-            // <DndProvider backend={Backend}>
+        
             <div className="dashContainer">
                 {/* column 1 */}
                 <div className="columnContainer">
@@ -165,7 +158,7 @@ class Dashboard extends Component {
                             >
                             {images.map(icon => (
                             <Draggable key={icon.id}>
-                            <img src={icon.img} className="widgetIcons" id={icon.id} name={icon.name} alt={icon.name} />
+                            <SVG src={icon.img} className="widgetIcons" id={icon.id} name={icon.name} alt={icon.name}></SVG>
                             </Draggable>
                             ))}
                             </Container>
@@ -223,11 +216,8 @@ class Dashboard extends Component {
 
                 
             </div>
-            // </DndProvider>
+    
         )
     }
 }
 export default Dashboard;
-// module.exports = dragDropContext(HTML5Backend)(Dashboard);
-//export default DragDropContext(HTML5Backend)(Dashboard);
-

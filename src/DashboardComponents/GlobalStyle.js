@@ -16,7 +16,19 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-size: 100% 100%;
     color: ${props  => props.theme.themes ? props.theme.themes.textColor : "#000000" };
+    min-height: 100vh;
+    min-width: 100vw;
   }
+  .timer {
+  height: 120vh;
+  width: 100vw;
+  color: ${props  => props.theme.themes ? props.theme.themes.secondaryColor : "#000000" };
+  }
+  .a {
+  height: 120vh;
+  width: 100vw;
+  color: ${props  => props.theme.themes ? props.theme.themes.secondaryColor : "#000000" };
+}
     
 
 `;

@@ -4,7 +4,7 @@ export default class EmptyWidget extends Component {
     render() {
         return (
             <div >
-                <p>drop here</p>
+                <h3>drop here</h3>
             </div>
         )
     }
