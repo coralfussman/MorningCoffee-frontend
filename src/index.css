@@ -378,7 +378,7 @@ button {
 
 @media (prefers-reduced-motion: no-preference) {
   .loader {
-    animation: loader-spin infinite 9s linear;
+    animation: loader-spin infinite 8s linear;
   }
 }
 
