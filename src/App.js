@@ -20,7 +20,7 @@ import {withRouter} from 'react-router-dom'
 
 
 
-const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24&api-key=Vbo7rX2HeUg4VgvGnKUC0AYflLY5sSBW`
+const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24&api-key=${process.env.REACT_APP_API_KEY}`
 
 
 
@@ -51,8 +51,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       themeNames: [],
       token: "",
       searchTerm: "",
-      filteredArray: [],
-      // userWidgets: []
+      filteredArray: []
 
   
     }
@@ -165,7 +164,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     }
 
 
-    //-----------widget functions
+    //-------widget functions below
 
     addOneWidget = (newlyCreatedWidgetDash) => {
       console.log(newlyCreatedWidgetDash)
@@ -179,7 +178,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
         
       }))
     
-      console.log(copyOfWidgets, "copy of widge")
+      //console.log(copyOfWidgets, "copy of widge")
     }
 
 
@@ -190,7 +189,7 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
       console.log(deletedWidgetDash, "deleted widge dash")
       let copyOfWidgets = this.state.user.dashboards[0].widgets.filter((widgetPojo) => {
         return widgetPojo.widget_dash_id !== deletedWidgetDash
-        // return widgetPojo ? widgetPojo.widget_dash_id !== deletedWidgetDash : this.state.user.dashboards[0].widgets
+      
       })
       let copyOfWidgetDash = this.state.user.dashboards[0].widget_dashes
       
@@ -200,13 +199,13 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
           dashboards: [{id: "1", widget_dashes: copyOfWidgetDash, widgets: copyOfWidgets}]
         }
       }))
-      console.log(copyOfWidgets, "copy of widge")
+      //console.log(copyOfWidgets, "copy of widge")
     }
 
 
 
 
-     //------dash functions
+     //------dash functions below
 
      changeSearchTerm = (termFromChild) => {
       this.setState({
@@ -228,16 +227,10 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
          
     }
   
-    //theme functions
+    //-------theme functions below
+
     updateTheme = (updatedPojo) => {
-      console.log(updatedPojo)
-    //   let copyOfObject = this.state.user.themes[0].name.map((themePojo) => {
-    //     if (themePojo.id === updatedPojo.id) {
-    //         return updatedPojo
-    //     } else {
-    //         return themePojo
-    //     }
-    // })
+ 
     this.setState({
         user: updatedPojo
     })
@@ -308,15 +301,11 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
     render() {
       const mode = this.state.user.themes[0].name
       const style = themes[mode]
-    //  console.log(this.state.user.themes[0])
+ 
     console.log(this.state.user)
-    //  console.log(this.state.themeNames)
-    //console.log(this.state.user.dashboards[0].id)
-    //console.log(this.state.user.dashboards[0].widgets)
-    // console.log(style)
-    // console.log(themes)
+  
       return (
-        // <Theme>
+      
         <ThemeProvider theme={{themes: style}} > 
           <GlobalStyle  />
             <div >
@@ -335,12 +324,10 @@ const API = `https://api.nytimes.com/svc/news/v3/content/nyt/world.json?limit=24
               </Switch>
             </div>
         </ThemeProvider>
-        // </Theme>
+     
     );
   }
 }
-
-//export default App;
 
 let RouterComponent = withRouter(App)
 export default RouterComponent

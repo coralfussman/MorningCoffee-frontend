@@ -1,5 +1,5 @@
 import React from 'react';
-import {themes, NewsCards} from './Themes';
+import {NewsCards} from './Themes';
 
 class ArticleCard extends React.Component {
   render() {
